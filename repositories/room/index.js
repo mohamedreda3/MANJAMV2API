@@ -269,7 +269,6 @@ module.exports = class {
               "].new_price', ?) WHERE id = ?",
               [updatedPrice, offerId]
             );
-            if (x.affectedRows)
               pusher.trigger("my-channel", "priceReduced", {
                 message: "Price Reduced",
                 data: [offerId, updatedPrice],

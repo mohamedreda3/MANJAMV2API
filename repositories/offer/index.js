@@ -394,11 +394,15 @@ module.exports = class {
                 (item) => item?.id == var_item?.prop_value_id
               )[0]
             ) {
-              prop_value[0].stock = var_item?.av_quantity;
-              prop_value[0].remainig_stock = var_item?.remainig_quantity;
-              prop_value[0].old_price = var_item?.old_price;
-              prop_value[0].new_price = var_item?.new_price;
-              props_values.push(prop_value[0]);
+              try{
+                prop_value[0].stock = var_item?.av_quantity;
+                prop_value[0].remainig_stock = var_item?.remainig_quantity;
+                prop_value[0].old_price = var_item?.old_price;
+                prop_value[0].new_price = var_item?.new_price;
+                props_values.push(prop_value[0]);
+                }catch(e){
+                  
+                }
             }
           }
           if (!colors.filter((item) => item?.id == var_item?.color_id)[0]) {
@@ -569,11 +573,15 @@ module.exports = class {
                   (item) => item?.id == var_item?.prop_value_id
                 )[0]
               ) {
-                prop_value[0].stock = var_item?.av_quantity;
-                prop_value[0].r_stock = var_item?.remainig_quantity;
-                prop_value[0].old_price = var_item?.old_price;
-                prop_value[0].new_price = var_item?.new_price;
-                props_values.push(prop_value[0]);
+                try{
+                  prop_value[0].stock = var_item?.av_quantity;
+                  prop_value[0].remainig_stock = var_item?.remainig_quantity;
+                  prop_value[0].old_price = var_item?.old_price;
+                  prop_value[0].new_price = var_item?.new_price;
+                  props_values.push(prop_value[0]);
+                  }catch(e){
+                    
+                  }
               }
             }
             if (!colors.filter((item) => item?.id == var_item?.color_id)[0]) {
@@ -779,11 +787,15 @@ module.exports = class {
                     (item) => item?.id == var_item?.prop_value_id
                   )[0]
                 ) {
-                  prop_value[0].stock = var_item?.av_quantity;
-                  prop_value[0].r_stock = var_item?.remainig_quantity;
-                  prop_value[0].old_price = var_item?.old_price;
-                  prop_value[0].new_price = var_item?.new_price;
-                  props_values.push(prop_value[0]);
+                  try{
+                    prop_value[0].stock = var_item?.av_quantity;
+                    prop_value[0].remainig_stock = var_item?.remainig_quantity;
+                    prop_value[0].old_price = var_item?.old_price;
+                    prop_value[0].new_price = var_item?.new_price;
+                    props_values.push(prop_value[0]);
+                    }catch(e){
+                      
+                    }
                 }
               }
               if (!colors.filter((item) => item?.id == var_item?.color_id)[0]) {

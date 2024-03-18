@@ -411,11 +411,11 @@ module.exports = class {
         // console.log(products, colors, images, props, props_values);
         await groupProducts({
           products,
-          colors,
-          images,
-          props,
-          props_values,
-          customerReviews,
+          colors: colors ? colors : [],
+          images: images ? images : [],
+          customerReviews: customerReviews ? customerReviews : [],
+          props: props ? props : [],
+          props_values: props_values ? props_values : []
         });
         item.products = products;
         offers.push(item);
@@ -588,11 +588,11 @@ module.exports = class {
           // console.log(products, colors, images, props, props_values);
           await groupProducts({
             products,
-            colors,
-            images,
-            props,
-            props_values,
-            customerReviews,
+            colors: colors ? colors : [],
+          images: images ? images : [],
+          customerReviews: customerReviews ? customerReviews : [],
+          props: props ? props : [],
+          props_values: props_values ? props_values : []
           });
           item.products = products;
           offers.push(item);
@@ -682,6 +682,11 @@ module.exports = class {
       data?.offer_id,
     ]);
     if (holded?.affectedRows) {
+      // await doQuery("Update rooms_joined SET user_status = ? WHERE user_id = ? AND rooms_id = ?",[
+      //   data?.user_status,
+      //   data?.user_id,
+      //   data?.rooms_id,
+      // ])
       return { status: 1, message: " Holded Successfully" };
 
     } else {
@@ -793,11 +798,11 @@ module.exports = class {
             // console.log(products, colors, images, props, props_values);
             await groupProducts({
               products,
-              colors,
-              images,
-              props,
-              props_values,
-              customerReviews,
+              colors: colors ? colors : [],
+              images: images ? images : [],
+              customerReviews: customerReviews ? customerReviews : [],
+              props: props ? props : [],
+              props_values: props_values ? props_values : []
             });
             item.products = products;
             offers.push(item);

@@ -56,51 +56,53 @@ module.exports = group = ({
       if (item && item.store && item.store.length) {
         item.store.split("***");
       }
-      colors?.map((c_item, c_index) => {
-        if (c_item) {
-          c_item.images = [];
-          c_item.props = [];
+      if (colors && colors?.length)
+        colors?.map((c_item, c_index) => {
+          if (c_item) {
+            c_item.images = [];
+            c_item.props = [];
 
-          let arr_v = [];
-          props?.map((pr_item, pr_index) => {
-            if (pr_item.color_id == c_item.id) {
-              props_values.map((prv_item, prv_index) => {
-                if (prv_item.prop_id == pr_item.id) {
-                  arr_v.push(prv_item);
-                }
-              });
+            let arr_v = [];
+            props?.map((pr_item, pr_index) => {
+              if (pr_item.color_id == c_item.id) {
+                props_values.map((prv_item, prv_index) => {
+                  if (prv_item.prop_id == pr_item.id) {
+                    arr_v.push(prv_item);
+                  }
+                });
 
-              c_item.props.push({
-                label: pr_item.label,
-                label_ar: pr_item.label_ar,
-                id: pr_item.id,
-                color_id: c_item.id,
-                values: arr_v,
-              });
+                c_item.props.push({
+                  label: pr_item.label,
+                  label_ar: pr_item.label_ar,
+                  id: pr_item.id,
+                  color_id: c_item.id,
+                  values: arr_v,
+                });
 
-              arr_v = [];
+                arr_v = [];
+              }
+            });
+
+            if (item?.id == c_item?.product_id) {
+              item.colors.push(c_item);
             }
-          });
 
-          if (item?.id == c_item?.product_id) {
-            item.colors.push(c_item);
+            images?.map((i_item, i_index) => {
+              if (c_item?.id == i_item?.color_id) {
+                c_item.images.push(i_item);
+              }
+            });
           }
-
-          images?.map((i_item, i_index) => {
-            if (c_item?.id == i_item?.color_id) {
-              c_item.images.push(i_item);
-            }
-          });
-        }
-      });
+        });
 
       item.customerReviews = [];
+      if (customerReviews && customerReviews?.length)
 
-      customerReviews?.map((cr_item) => {
-        if (item?.id == cr_item?.product_id) {
-          item.customerReviews.push(cr_item);
-        }
-      });
+        customerReviews?.map((cr_item) => {
+          if (item?.id == cr_item?.product_id) {
+            item.customerReviews.push(cr_item);
+          }
+        });
 
       let sum_f_v = 0;
       let sum_f_v_c = 0;

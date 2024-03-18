@@ -23,7 +23,8 @@ module.exports = class {
 
       let products = product;
       Group({
-        products, colors: colors ? colors : [],
+        products, 
+        colors: colors ? colors : [],
         images: images ? images : [],
         customerReviews: customerReviews ? customerReviews : [],
         props: props ? props : [],

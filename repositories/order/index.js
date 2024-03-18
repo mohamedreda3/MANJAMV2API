@@ -233,11 +233,11 @@ module.exports = class {
         const products = [product];
         await groupProducts({
           products,
-          colors,
-          images,
-          customerReviews,
-          props,
-          props_values,
+          colors: colors ? colors : [],
+          images: images ? images : [],
+          customerReviews: customerReviews ? customerReviews : [],
+          props: props ? props : [],
+          props_values: props_values ? props_values : []
         });
         
         return {

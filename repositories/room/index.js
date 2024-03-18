@@ -190,6 +190,10 @@ module.exports = class {
       cost,
       rooms_id,
     ];
+    pusher.trigger("my-channel", "NewJoiner", {
+      message: "New Person Joined",
+      data: [],
+    });
 
     try {
       await doQuery(query, values);
@@ -202,12 +206,13 @@ module.exports = class {
       const getOffer = await doQuery("SELECT * FROM offers WHERE id = ?", [
         offer_id,
       ]);
-      pusher.trigger("my-channel", "startTender", {
-        message: "Tender Began",
-        data: newRooms,
-      });
+      
 
       if (newRooms?.length == roomExistResult[0]?.max_members) {
+        pusher.trigger("my-channel", "startTender", {
+          message: "Tender Began",
+          data: newRooms,
+        });
         // ===================================================
         const job = schedule.scheduleJob(
           new Date(Date.now() + roomExistResult[0]?.max_time * 1 * 60 * 1000),
@@ -249,7 +254,16 @@ module.exports = class {
                   rateTime,
                   rateMoney
                 );
+                pusher.trigger("my-channel", "priceReduced", {
+                  message: "Price Reduced",
+                  data: [],
+                });
               }
+            }else if(offerSelected[0]?.hold&& !offerSelected[0]?.stopped){
+              pusher.trigger("my-channel", "priceReduced", {
+                message: "Price Reduced",
+                data: [],
+              });
             }
           });
           async function decreasePrice(

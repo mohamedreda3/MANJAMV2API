@@ -690,11 +690,15 @@ module.exports = class {
       data?.offer_id,
     ]);
     if (holded?.affectedRows) {
-      // await doQuery("Update rooms_joined SET user_status = ? WHERE user_id = ? AND rooms_id = ?",[
-      //   data?.user_status,
-      //   data?.user_id,
-      //   data?.rooms_id,
-      // ])
+    const x =  await doQuery("Update rooms_joined SET user_status = ? WHERE user_id = ? AND rooms_id = ?",[
+        data?.user_status,
+        data?.user_id,
+        data?.rooms_id,
+      ]);
+      pusher.trigger("my-channel", "priceReduced", {
+        message: "Price Reduced",
+        data: [],
+      });
       return { status: 1, message: " Holded Successfully" };
 
     } else {
